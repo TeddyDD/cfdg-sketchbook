@@ -6,19 +6,20 @@ const FILE := "/tmp/godot.cfdg"
 var render := preload("res://render.gd").new()
 
 func _ready():
-	var keywords = [
+	var keywords := [
 		"startshape",
 		"shape",
 		"rule",
+		"path",
 	]
 	
 	var hl := CodeHighlighter.new()
 	hl.symbol_color = Color.VIOLET
 	hl.number_color = Color(0.7259184718132, 0.9949923157692, 0.74536508321762)
 	
-	for k in keywords:
-		hl.add_keyword_color(k,Color.AQUA)
-	for k in ["CIRCLE", "SQUARE", "TRIANGLE"]:
+	for k in keywords as Array[String]:
+		hl.add_keyword_color(k, Color.AQUA)
+	for k in ["CIRCLE", "SQUARE", "TRIANGLE"] as Array[String]:
 		hl.add_keyword_color(k, Color.CORNFLOWER_BLUE)
 		
 	%code.syntax_highlighter = hl
@@ -40,5 +41,3 @@ func _on_render_pressed():
 
 	var out := %output as TextureRect
 	out.texture = texture
-
-	pass # Replace with function body.
